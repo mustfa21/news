@@ -18,3 +18,7 @@ Route::get('/admin', function () {
 Route::get('scand','Admin\ScandController@show');
 
 Route::resource('news','NewsController');
+Route::get('offer','NewsController@getoffer');
+
+Route::get('create','OffersController@create');
+Route::post('store','OffersController@store') ->name('insert');

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Offer;
 use Illuminate\Http\Request;
 
 class NewsController extends Controller
@@ -11,18 +12,14 @@ class NewsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+
+    public function getoffer()
     {
 
-
-        $obj = new \stdClass();
-        $obj ->name = 'MUSTFA';
-        $obj ->id = 1;
-        $obj ->gender = 'mela';
-        $obj ->age = 24;
+   return Offer::get();
 
 
-        return view('welcome',compact('obj'));
+//        return view('welcome',compact('obj'));
     }
 
     /**
