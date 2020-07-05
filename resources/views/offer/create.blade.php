@@ -1,6 +1,15 @@
 @extends('layouts.app')
 
 @section('content')
+    <ul>
+        @foreach(LaravelLocalization::getSupportedLocales() as $localeCode => $properties)
+            <li>
+                <a rel="alternate" hreflang="{{ $localeCode }}" href="{{ LaravelLocalization::getLocalizedURL($localeCode, null, [], true) }}">
+                    {{ $properties['native'] }}
+                </a>
+            </li>
+        @endforeach
+    </ul>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -9,7 +18,7 @@
 
 
                   @if(Session::has('success'))
-                <label for="formGroupExampleInput">{{Session::gets('success')}}</label>
+                <label for="formGroupExampleInput">{{Session::get('success')}}</label>
                  @endif
                 <form method="post" action="{{route('insert')}}">
                     @csrf

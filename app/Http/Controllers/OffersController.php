@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\offerRequst;
 use App\Models\Offer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -39,20 +40,18 @@ class OffersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(offerRequst $request)
 
     {
 
 
-        $stuts =$this->getstuts();
-        $msg =$this->getmsg();
 
 
-        $valid = Validator::make($request->all(),$stuts,$msg);
-        if($valid ->fails()){
-            return redirect()->back()->withErrors($valid)->withInputs($request->all());
-
-        }
+////        $valid = Validator::make($request->all());
+//        if($valid ->fails()){
+//            return redirect()->back()->withErrors($valid)->withInputs($request->all());
+//
+//        }
 
         Offer::create([
             'name' => $request->name ,
@@ -64,19 +63,19 @@ class OffersController extends Controller
     }
 
 
-    protected  function  getstuts(){
-        return   $stuts=[
-            'name' => 'required',
-            'photo' => 'required',
-        ];
-
-    }
-    protected  function  getmsg(){
-        return   $msg=[
-            'name.required' =>' pales enter youer name ',
-            'photo.required'=>'the fild is required'
-        ];
-    }
+////    protected  function  getstuts(){
+////        return   $stuts=[
+////            'name' => 'required',
+////            'photo' => 'required',
+////        ];
+////
+////    }
+//    protected  function  getmsg(){
+//        return   $msg=[
+//            'name.required' =>__('messages.offer name'),
+//            'photo.required'=>'the fild is required'
+//        ];
+//    }
 
 
 }
